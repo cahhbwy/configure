@@ -40,14 +40,9 @@ ___boot下建立ssh文件___
 >> 追加
 >> ```
 >> network={
->>     ssid="monk"
->>     psk="monk1024"
+>>     ssid="xxxx"
+>>     psk="*******"
 >>     priority=255
->> }
->> network={
->>     ssid="x001.414"
->>     psk="123123321"
->>     priority=128
 >> }
 >> ```
 
