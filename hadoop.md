@@ -12,6 +12,7 @@ export HADOOP_COMMON_HOME=$HADOOP_HOME
 export HADOOP_HDFS_HOME=$HADOOP_HOME
 export YARN_HOME=$HADOOP_HOME
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
 export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 export HADOOP_INSTALL=$HADOOP_HOME
 ```
@@ -32,8 +33,8 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 ```xml
 <configuration>
   <property>
-    <name>fs.default.name</name>
-    <value> hdfs://localhost:9000</value>
+    <name>fs.default.name </name>
+    <value> hdfs://localhost:9000 </value>
   </property>
 </configuration>
 ```
@@ -47,11 +48,11 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   </property>
   <property>
     <name>dfs.name.dir</name>
-    <value>file:///home/monk/hdfs/namenode</value>
+    <value>file:///home/monk/workspace/hadoop/hdfs/namenode </value>
   </property>
   <property>
     <name>dfs.data.dir</name> 
-    <value>file:///home/monk/hdfs/datanode</value> 
+    <value>file:///home/monk/workspace/hadoop/hdfs/datanode </value> 
   </property>
 </configuration>
 ```
