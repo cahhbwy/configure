@@ -263,24 +263,32 @@ public class ProcessUnits {
 ```
 
 6. 此时工程的文件如下
+
 ![工程文件列表](image/hadoop/01.png)
 
 7. 配置file->Settyings->Build, Execution, Deployment->Java Compiler，预编译版本
+
 ![Settings](image/hadoop/02.png)
 
 8. 配置file->Project Structure->Project Settings->Modules，语言等级
+
 ![Project Settings](image/hadoop/03.png)
 
 9. 配置Run/Debug Configurations
+
 ![local configurations](image/hadoop/04.png)
+
 ![hdfs configurations](image/hadoop/05.png)
 
 10. 运行效果
+
 ![show](image/hadoop/06.png)
 
 11. 查看运行结果
+
 ![local result](image/hadoop/07.png)
-![hdfs result](image/haddop/08.png)
+
+![hdfs result](image/hadoop/08.png)
 
 
 
