@@ -96,8 +96,11 @@ start-yarn.sh
 
 ### sample测试
 ```bash
+start-dfs.sh
+start-yarn.sh
 hadoop fs -mkdir /input
 hadoop fs -put $HADOOP_HOME/*.txt /input
 hadoop fs -ls /input
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduceexamples-2.2.0.jar wordcount /input /ouput
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.1.jar wordcount /input /output
+hadoop fs -cat /output/part-r-00000
 ```
