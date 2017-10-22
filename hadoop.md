@@ -36,6 +36,10 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
     <name>fs.default.name</name>
     <value>hdfs://localhost:9000</value>
   </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>file:///home/monk/workspace/hadoop/tmp</value>
+  </property>
 </configuration>
 ```
 
