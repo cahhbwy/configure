@@ -99,28 +99,28 @@ cat output/part-00000
 
 1. 新建Scala SBT工程
 
-![](3.png)
+![](image/spark/3.png)
 
 2. 设置工程名称SparkWordCount，选择JDK版本、SBT版本、Scala版本=2.11
 
-![](4.png)
+![](image/spark/4.png)
 
 3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11；添加java，路径为/opt/spark/jars
 
-![](5.png)
+![](image/spark/5.png)
 
-![](6.png)
+![](image/spark/6.png)
 
-![](7.png)
+![](image/spark/7.png)
 
-![](8.png)
+![](image/spark/8.png)
 
 4. 在src/main/scala下新建Scala class，kind选择Object，完成代码SparkWordCount.scala；在工程目录下建立文件input.txt
 
-![](9.png)
+![](image/spark/9.png)
 
-![](10.png)
+![](image/spark/10.png)
 
 5. 编译并运行，查看结果
 
-![](11.png)
+![](image/spark/11.png)
