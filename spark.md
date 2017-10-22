@@ -38,14 +38,21 @@ export PATH="/opt/spark/bin:$PATH"
 ```
 
 ## 测试（终端）
+
 启动hadoop，打开spark-shell
+
 ```
 start-dfs.sh
 ```
+
 建立测试用的文件input.txt
+
 > people are not as beautiful as they look, 
+
 > as they walk or as they talk.
+
 > they are only as beautiful  as they love, 
+
 > as they care as they share.
 
 ![input.txt](image/spark/0.png)
