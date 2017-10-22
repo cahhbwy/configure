@@ -4,7 +4,7 @@
 
 ## 需要hadoop，见[hadoop安装](hadoop.md)
 
-## 需要scala
+## 需要scala，建议2.11版本
 
 1. 可以使用apt源里的scala
 
@@ -32,21 +32,22 @@ sudo update-alternatives --config scala
 
 去[官网](https://spark.apache.org/downloads.html)下载并解压spark到/opt目录(个人喜好，自行安装的软件放在了/opt目录)，对spark-\*.\*.\*-bin\*文件夹建立软链接到/opt/spark，便于日后更新版本
 
-* 环境变量
+环境变量
 ```bash
 export PATH="/opt/spark/bin:$PATH"
 ```
 
-## 测试
+## 测试（终端）
 启动hadoop，打开spark-shell
 ```
 start-dfs.sh
 ```
-# 建立测试用的文件input.txt
+建立测试用的文件input.txt
 > people are not as beautiful as they look, 
 > as they walk or as they talk.
 > they are only as beautiful  as they love, 
 > as they care as they share.
+
 ![input.txt](image/spark/0.png)
 ```bash
 spark-shell
@@ -57,7 +58,39 @@ scala> counts.saveAsTextFile("output")
 # 打开output文件夹查看输出
 cat output/part-*
 ```
+
 ![spark-shell](image/spark/1.png)
+
 ![output](image/spark/2.png)
 
+## 测试（程序）
 
+编写scala程序：SparkWordCount.scala
+```scala
+import org.apache.spark.SparkContext
+
+object SparkWordCount {
+  def main(args: Array[String]) {
+    /* local = master URL; Word Count = application name; */
+    /* /opt/spark = Spark Home; Nil = jars; Map = environment */
+    val sc = new SparkContext("local", "word count", "/opt/spark", Nil, Map())
+    /*creating an inputRDD to read text file (input.txt) through Spark context*/
+    val input_file = sc.textFile("input.txt")
+    /* Transform the inputRDD into countRDD */
+    val count = input_file.flatMap(line => line.split(" "))
+      .map(word => (word, 1))
+      .reduceByKey(_ + _)
+    /* saveAsTextFile method is an action that effects on the RDD */
+    count.saveAsTextFile("output")
+    println("OK")
+  }
+}
+```
+
+编译、打包、测试、查看结果
+```bash
+scalac -classpath "/opt/spark/jars/*" SparkWordCount.scala
+jar -cvf SparkWordCount.jar SparkWordCount*.class
+spark-submit --class SparkWordCount --master local SparkWordCount.jar
+cat output/part-00000
+```
