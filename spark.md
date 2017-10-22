@@ -94,3 +94,33 @@ jar -cvf SparkWordCount.jar SparkWordCount*.class
 spark-submit --class SparkWordCount --master local SparkWordCount.jar
 cat output/part-00000
 ```
+
+## 使用Intellij测试
+
+1. 新建Scala SBT工程
+
+![](3.png)
+
+2. 设置工程名称SparkWordCount，选择JDK版本、SBT版本、Scala版本=2.11
+
+![](4.png)
+
+3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11；添加java，路径为/opt/spark/jars
+
+![](5.png)
+
+![](6.png)
+
+![](7.png)
+
+![](8.png)
+
+4. 在src/main/scala下新建Scala class，kind选择Object，完成代码SparkWordCount.scala；在工程目录下建立文件input.txt
+
+![](9.png)
+
+![](10.png)
+
+5. 编译并运行，查看结果
+
+![](11.png)
