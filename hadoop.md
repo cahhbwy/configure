@@ -296,3 +296,21 @@ public class ProcessUnits {
 
 
 
+## 权限管理
+
+* 以hadoop用户启动dfs，则根目录权限为hadoop:supergroup
+
+* /tmp是每个用户都需要的，赋予777权限
+```bash
+hadoop fs -mkdir /tmp
+hadoop fs -chmod 777 /tmp
+```
+
+* 假设给用户userabc:groupabc分配一个工作目录abc
+
+以hadoop用户执行：
+```bash
+hadoop fs -mkdir /abc
+hadoop fs -chown -R userabc /abc
+hadoop fs -chgrp -R groupabc /abc
+```
