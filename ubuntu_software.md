@@ -54,23 +54,43 @@ sudo apt-get install ubuntu-gnome-desktop
 
 ## Anaconda
 
+https://www.anaconda.com/download/#linux
+
 ## pycharm
+
+https://www.jetbrains.com/pycharm/download/
 
 ## PhpStorm
 
+https://www.jetbrains.com/phpstorm/download/
+
 ## Clion
+
+https://www.jetbrains.com/clion/download/
 
 ## Intellij Idea IU
 
+https://www.jetbrains.com/idea/download/
+
 ## cuda
+
+https://developer.nvidia.com/cuda-toolkit-archive
 
 ## cudnn
 
+https://developer.nvidia.com/cudnn
+
 ## caffe
+
+http://caffe.berkeleyvision.org/install_apt.html
 
 ## hadoop
 
+http://hadoop.apache.org/releases.html
+
 ## spark
+
+https://spark.apache.org/downloads.html
 
 ## opencv
 
