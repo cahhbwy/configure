@@ -3,7 +3,8 @@
 ## oracle-jdk
 
 ```bash
-sudo add-apt-repository ppa:webupd8team/java
+sudo add-apt-repository ppa:webupd8team/java #java8
+sudo add-apt-repository ppa:linuxuprising/java #java10
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
 ```
