@@ -14,16 +14,23 @@ sudo apt install scala
 
 2. 可以去[官网](https://www.scala-lang.org/download/)下载最新版本的scala
 
-解压并拷贝到/usr/share/目录下
+解压并拷贝到/opt目录下
 
 ```bash
-sudo cp -r scala-2.12.4 /usr/share/
+sudo mv scala-2.12.6 /opt/
+sudo ln -s scala-2.12.6 scala
+```
+
+环境变量
+```
+export SCALA_HOME=/opt/scala
+export PATH=${SCALA_HOME}/bin:${PATH:+:${PATH}}
 ```
 
 使用update-alternatives安装并配置scala，
 
 ```bash
-sudo update-alternatives --install /usr/bin/scala scala /usr/share/scala-2.12.4/bin/scala 100
+sudo update-alternatives --install /usr/bin/scala scala /opt/scala/bin/scala 100
 sudo update-alternatives --config scala
 # 如果有多个版本的scala，进行选择配置
 ```
@@ -34,10 +41,11 @@ sudo update-alternatives --config scala
 
 环境变量
 ```bash
-export PATH="/opt/spark/bin:$PATH"
+export SPARK_HOME=/opt/spark
+export PATH=${SPARK_HOME}/sbin:${SPARK_HOME}/bin:${PATH:+:${PATH}}
 ```
 
-## 测试（终端）
+## 测试（终端） java10无法运行
 
 启动hadoop，打开spark-shell
 
