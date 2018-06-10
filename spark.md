@@ -1,10 +1,10 @@
 # spark
 
-## 需要jdk(略)
+## 需要jdk(略)，强烈建议使用java 8
 
 ## 需要hadoop，见[hadoop安装](hadoop.md)
 
-## 需要scala，建议2.11版本
+## 需要scala，建议选择与spark对应的版本，查看$SPARK_HOME/jars/scala*
 
 1. 可以使用apt源里的scala
 
@@ -20,6 +20,8 @@ sudo apt install scala
 sudo mv scala-2.12.6 /opt/
 sudo ln -s scala-2.12.6 scala
 ```
+
+实际上最后选择了2.11.8，与spark中对应的版本
 
 环境变量
 ```
@@ -39,19 +41,27 @@ sudo update-alternatives --config scala
 
 去[官网](https://spark.apache.org/downloads.html)下载并解压spark到/opt目录(个人喜好，自行安装的软件放在了/opt目录)，对spark-\*.\*.\*-bin\*文件夹建立软链接到/opt/spark，便于日后更新版本
 
+由于已经安装了hadoop 2.8.4，选择下载安装\[Pre-build with user-provided Apache Hadoop\]spark-2.3.0-bin-without-hadoop.tgz。增加
+```bash
+export SPARK_DIST_CLASSPATH=$(HADOOP_HOME/bin/hadoop classpath)
+```
+到SPARK_HOME/conf/spark-env.sh (由spark-env.sh.template复制得到)
+
+
+
 环境变量
 ```bash
 export SPARK_HOME=/opt/spark
 export PATH=${SPARK_HOME}/sbin:${SPARK_HOME}/bin:${PATH:+:${PATH}}
 ```
 
-## 测试（终端） java10无法运行
+## 测试
 
-启动hadoop，打开spark-shell
+从dfs文件系统读取数据，运行前需要启动start-dfs.sh，默认的读取文件方式为hdfs://HOST:PORT/user/USERNAME/PATH/TO/FILE。
 
-```
-start-dfs.sh
-```
+从本地系统读取数据，使用 file:///PATH/TO/FILE 读取文件
+
+### 测试（终端）
 
 建立测试用的文件input.txt
 
@@ -78,7 +88,7 @@ cat output/part-*
 
 ![output](image/spark/2.png)
 
-## 测试（程序）
+### 测试（程序）
 
 编写scala程序：SparkWordCount.scala
 ```scala
@@ -107,7 +117,6 @@ object SparkWordCount {
 scalac -classpath "/opt/spark/jars/*:$(hadoop classpath)" SparkWordCount.scala
 jar -cvf SparkWordCount.jar SparkWordCount*.class
 spark-submit --class SparkWordCount --master local SparkWordCount.jar
-cat output/part-00000
 ```
 
 ## 使用Intellij测试
@@ -120,7 +129,7 @@ cat output/part-00000
 
 ![](image/spark/4.png)
 
-3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11；添加java，路径为/opt/spark/jars
+3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11.8；添加java，路径为/opt/spark/jars
 
 ![](image/spark/5.png)
 
