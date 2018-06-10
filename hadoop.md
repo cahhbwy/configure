@@ -38,7 +38,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   </property>
   <property>
     <name>hadoop.tmp.dir</name>
-    <value>file:///home/monk/workspace/hadoop/tmp</value>
+    <value>file:///home/monk/workspace/hadoop_data/tmp</value>
   </property>
 </configuration>
 ```
@@ -52,11 +52,11 @@ export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   </property>
   <property>
     <name>dfs.name.dir</name>
-    <value>file:///home/monk/workspace/hadoop/hdfs/namenode</value>
+    <value>file:///home/monk/workspace/hadoop_data/hdfs/namenode</value>
   </property>
   <property>
     <name>dfs.data.dir</name> 
-    <value>file:///home/monk/workspace/hadoop/hdfs/datanode</value> 
+    <value>file:///home/monk/workspace/hadoop_data/hdfs/datanode</value> 
   </property>
 </configuration>
 ```
@@ -105,7 +105,7 @@ start-yarn.sh
 hadoop fs -mkdir /input
 hadoop fs -put $HADOOP_HOME/*.txt /input
 hadoop fs -ls /input
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.1.jar wordcount /input /output
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.4.jar wordcount /input /output
 hadoop fs -cat /output/part-r-00000
 ```
 
@@ -139,27 +139,27 @@ hadoop fs -cat /output/part-r-00000
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.8.1</version>
+            <version>2.8.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
-            <version>2.8.1</version>
+            <version>2.8.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-            <version>2.8.1</version>
+            <version>2.8.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>2.8.1</version>
+            <version>2.8.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-yarn-common</artifactId>
-            <version>2.8.1</version>
+            <version>2.8.4</version>
         </dependency>
     </dependencies>
 
