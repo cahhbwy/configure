@@ -126,15 +126,19 @@ spark-submit --class SparkWordCount --master local SparkWordCount.jar input.txt 
 
 ![](image/spark/3.png)
 
-2. 设置工程名称SparkWordCount，选择JDK版本、SBT版本、Scala版本=2.11
+2. 设置工程名称SparkWordCount，选择JDK版本、SBT版本、Scala版本=2.11.8
 
 ![](image/spark/4.png)
 
-3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11.8；添加java，路径为/opt/spark/jars
+3. 在Project Structure -> Project Settings -> Libraries ，移除SBT；添加Scala SDK，版本选择2.11.8；
 
 ![](image/spark/5.png)
 
+添加java，路径为/opt/spark/jars
+
 ![](image/spark/6.png)
+
+添加java，按照hadoop classpath的结果进行配置
 
 ![](image/spark/7.png)
 
@@ -158,11 +162,10 @@ spark-submit --class SparkWordCount --master local SparkWordCount.jar input.txt 
 
 ![](image/spark/14.png)
 
-![](image/spark/15.png)
-
 在对应目录下，执行
 ```bash
 spark-submit --class SparkWordCount --master local test.jar input.txt output
 ```
 
-![](image/spark/16.png)
+![](image/spark/15.png)
+
