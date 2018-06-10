@@ -270,7 +270,7 @@ public class ProcessUnits {
 
 ![工程文件列表](image/hadoop/01.png)
 
-7. 配置file->Settyings->Build, Execution, Deployment->Java Compiler，预编译版本
+7. 配置file->Settyings->Build, Execution, Deployment->Compiler->Java Compiler，预编译版本
 
 ![Settings](image/hadoop/02.png)
 
