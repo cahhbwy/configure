@@ -100,13 +100,13 @@ object SparkWordCount {
     /* /opt/spark = Spark Home; Nil = jars; Map = environment */
     val sc = new SparkContext("local", "word count", "/opt/spark", Nil, Map())
     /*creating an inputRDD to read text file (input.txt) through Spark context*/
-    val input_file = sc.textFile("input.txt")
+    val input_file = sc.textFile(args(0))
     /* Transform the inputRDD into countRDD */
     val count = input_file.flatMap(line => line.split(" "))
       .map(word => (word, 1))
       .reduceByKey(_ + _)
     /* saveAsTextFile method is an action that effects on the RDD */
-    count.saveAsTextFile("output")
+    count.saveAsTextFile(args(1))
     println("OK")
   }
 }
@@ -116,7 +116,8 @@ object SparkWordCount {
 ```bash
 scalac -classpath "/opt/spark/jars/*:$(hadoop classpath)" SparkWordCount.scala
 jar -cvf SparkWordCount.jar SparkWordCount*.class
-spark-submit --class SparkWordCount --master local SparkWordCount.jar
+spark-submit --class SparkWordCount --master local SparkWordCount.jar file:///home/monk/workspace/spark/input.txt file:///home/monk/workspace/spark/output  # 本地测试
+spark-submit --class SparkWordCount --master local SparkWordCount.jar input.txt output  # hdfs测试
 ```
 
 ## 使用Intellij测试
@@ -137,14 +138,31 @@ spark-submit --class SparkWordCount --master local SparkWordCount.jar
 
 ![](image/spark/7.png)
 
-![](image/spark/8.png)
-
 4. 在src/main/scala下新建Scala class，kind选择Object，完成代码SparkWordCount.scala；在工程目录下建立文件input.txt
+
+![](image/spark/8.png)
 
 ![](image/spark/9.png)
 
-![](image/spark/10.png)
-
 5. 编译并运行，查看结果
 
+![](image/spark/10.png)
+
 ![](image/spark/11.png)
+
+![](image/spark/12.png)
+
+6. 打包，使用spark-submit运行。File->Project Structure->Project Settings->Artifacts，添加JAR->From modules with dependencies...,删除其他包，添加sbt包，使用build->Build Artifacts...进行打包。在out/artifacts/下生成。
+
+![](image/spark/13.png)
+
+![](image/spark/14.png)
+
+![](image/spark/15.png)
+
+在对应目录下，执行
+```bash
+spark-submit --class SparkWordCount --master local test.jar input.txt output
+```
+
+![](image/spark/16.png)
