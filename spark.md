@@ -104,7 +104,7 @@ object SparkWordCount {
 
 编译、打包、测试、查看结果
 ```bash
-scalac -classpath "/opt/spark/jars/*" SparkWordCount.scala
+scalac -classpath "/opt/spark/jars/*:$(hadoop classpath)" SparkWordCount.scala
 jar -cvf SparkWordCount.jar SparkWordCount*.class
 spark-submit --class SparkWordCount --master local SparkWordCount.jar
 cat output/part-00000
