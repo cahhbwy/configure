@@ -92,15 +92,15 @@ conda install pillow conda-build numpy scipy cython ipython pandas
 ### opencv3
 ```bash
 sudo apt-get install libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev libxine2-dev libv4l-dev libgphoto2-dev libtesseract-dev libleptonica-dev libwebp-dev libprotobuf-dev libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libopenblas-dev
-wget https://github.com/opencv/opencv_contrib/archive/3.2.0.tar.gz -O opencv_contrib.tar.gz
-wget https://github.com/opencv/opencv/archive/3.2.0.tar.gz -O opencv.tar.gz
-# wget https://github.com/opencv/opencv_extra/archive/3.2.0.tar.gz -O opencv_extra.tar.gz
+wget https://github.com/opencv/opencv/archive/3.4.2.zip -O opencv-3.4.2.zip
+wget https://github.com/opencv/opencv_contrib/archive/3.4.2.zip -O opencv_contrib-3.4.2.zip
+# wget https://github.com/opencv/opencv_extra/archive/3.4.2.zip -O opencv_extra-3.4.2.zip
 ```
 ##### [TBB](https://www.threadingbuildingblocks.org/download) 编译安装
 ```bash
-wget https://github.com/01org/tbb/archive/2017_U7.zip -O tbb.zip
-unzip -q tbb.zip
-cd tbb-2017_U7/
+wget https://github.com/01org/tbb/archive/2018_U5.zip -O tbb-2018_U5.zip
+unzip -q tbb-2018_U5.zip
+cd tbb-2018_U5/
 make -j2
 cd build/*_release/
 sudo cp lib*.so* /usr/local/lib/
@@ -114,27 +114,29 @@ make
 ```
 ##### [sfm模块](http://docs.opencv.org/3.1.0/db/db8/tutorial_sfm_installation.html)
 ```
-sudo apt-get install libeigen3-dev libsuitesparse-dev
-git clone https://ceres-solver.googlesource.com/ceres-solver
-cd ceres-solver
+sudo apt-get install libeigen3-dev libsuitesparse-dev libgflags-dev libgoogle-glog-dev
+wget http://ceres-solver.org/ceres-solver-1.14.0.tar.gz
+tar -xf ceres-solver-1.14.0.tar.gz
+cd ceres-solver-1.14.0
 mkdir build && cd build
 cmake ..
 make -j4
-make test
 sudo make install
 ```
 #### 编译opencv3
 ```bash
-mkdir opencv320_build
-cd opencv320_build
+mkdir opencv_build-3.4.2
+cd opencv_build-3.4.2
 cmake -DCMAKE_BUILD_TYPE=RELEASE \
 	-DCMAKE_INSTALL_PREFIX=/usr/local \
-	-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules \
+	-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.2/modules \
 	-DWITH_XIMEA=ON -DWITH_OPENCL_SVM=ON -DWITH_OPENMP=ON -DWITH_UNICAP=ON -DWITH_TBB=ON -DWITH_XINE=ON -DBUILD_WITH_DYNAMIC_IPP=ON -DWITH_OPENGL=ON -DWITH_LIBV4L=ON \
 	-DBUILD_opencv_world=OFF -DBUILD_opencv_contrib_world=ON \
 	-DBUILD_SHARED_LIBS=ON -DBUILD_JAVA_SUPPORT=ON -DBUILD_EXAMPLES=ON -DBUILD_TESTS=ON -DBUILD_PERF_TESTS=ON -DWITH_CUDA=OFF \
-	-DPYTHON2_EXECUTABLE=/usr/local/conda/bin/python2 -DPYTHON2_INCLUDE_DIR=/usr/local/conda/include/python2.7 -DPYTHON2_INCLUDE_DIR2=/usr/include/arm-linux-gnueabihf/python2.7 -DPYTHON2_LIBRARY=/usr/local/conda/lib/libpython2.7.so -DPYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/conda/lib/python2.7/site-packages/numpy/core/include \
-	../opencv
+	-DPYTHON3_EXECUTABLE=/usr/bin/python3.5m -DPYTHON3_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON3_INCLUDE_DIR2=/usr/include/arm-linux-gnueabihf/python3.5m -DPYTHON3_LIBRARY=/usr/lib/arm-linux-gnueabihf/libpython3.5m.so -DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include \
+	../opencv-3.4.2
+make
+sudo make install
 ```
 
 ### opencv2
