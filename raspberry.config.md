@@ -91,7 +91,7 @@ conda install pillow conda-build numpy scipy cython ipython pandas
 
 ### opencv3
 ```bash
-sudo apt-get install libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev libxine2-dev libv4l-dev libgphoto2-dev libtesseract-dev libleptonica-dev libwebp-dev libprotobuf-dev libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libopenblas-dev
+sudo apt-get install libjpeg-dev libpng12-dev libtiff5-dev libjasper-dev libdc1394-22-dev libxine2-dev libv4l-dev libgphoto2-dev libtesseract-dev libleptonica-dev libwebp-dev libprotobuf-dev libavcodec-dev libavformat-dev libswscale-dev libxvidcore-dev libx264-dev libopenblas-dev libunicap2-dev libavresample-dev libopenblas-dev
 wget https://github.com/opencv/opencv/archive/3.4.2.zip -O opencv-3.4.2.zip
 wget https://github.com/opencv/opencv_contrib/archive/3.4.2.zip -O opencv_contrib-3.4.2.zip
 # wget https://github.com/opencv/opencv_extra/archive/3.4.2.zip -O opencv_extra-3.4.2.zip
@@ -127,13 +127,25 @@ sudo make install
 ```bash
 mkdir opencv_build-3.4.2
 cd opencv_build-3.4.2
-cmake -DCMAKE_BUILD_TYPE=RELEASE \
-	-DCMAKE_INSTALL_PREFIX=/usr/local \
-	-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.2/modules \
-	-DWITH_XIMEA=ON -DWITH_OPENCL_SVM=ON -DWITH_OPENMP=ON -DWITH_UNICAP=ON -DWITH_TBB=ON -DWITH_XINE=ON -DBUILD_WITH_DYNAMIC_IPP=ON -DWITH_OPENGL=ON -DWITH_LIBV4L=ON \
-	-DBUILD_opencv_world=OFF -DBUILD_opencv_contrib_world=ON \
-	-DBUILD_SHARED_LIBS=ON -DBUILD_JAVA_SUPPORT=ON -DBUILD_EXAMPLES=ON -DBUILD_TESTS=ON -DBUILD_PERF_TESTS=ON -DWITH_CUDA=OFF \
-	-DPYTHON3_EXECUTABLE=/usr/bin/python3.5m -DPYTHON3_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON3_INCLUDE_DIR2=/usr/include/arm-linux-gnueabihf/python3.5m -DPYTHON3_LIBRARY=/usr/lib/arm-linux-gnueabihf/libpython3.5m.so -DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include \
+# cmake -DCMAKE_BUILD_TYPE=RELEASE \
+# 	-DCMAKE_INSTALL_PREFIX=/usr/local \
+# 	-DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.2/modules \
+# 	-DWITH_XIMEA=ON -DWITH_OPENCL_SVM=ON -DWITH_OPENMP=ON -DWITH_UNICAP=ON -DWITH_TBB=ON -DWITH_XINE=ON -DBUILD_WITH_DYNAMIC_IPP=ON -DWITH_OPENGL=ON -DWITH_LIBV4L=ON \
+# 	-DENABLE_NEON=ON -DENABLE_VFPV3=ON \
+# 	-DBUILD_opencv_world=OFF -DBUILD_opencv_contrib_world=ON \
+# 	-DBUILD_SHARED_LIBS=ON -DBUILD_JAVA_SUPPORT=ON -DBUILD_EXAMPLES=ON -DBUILD_TESTS=ON -DBUILD_PERF_TESTS=ON -DWITH_CUDA=OFF \
+# 	-DPYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+# 	-DPYTHON3_EXECUTABLE=/usr/bin/python3.5m -DPYTHON3_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON3_INCLUDE_DIR2=/usr/include/arm-linux-gnueabihf/python3.5m -DPYTHON3_LIBRARY=/usr/lib/arm-linux-gnueabihf/libpython3.5m.so -DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/dist-packages/numpy/core/include \
+# 	../opencv-3.4.2
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	-D CMAKE_INSTALL_PREFIX=/usr/local \
+	-D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib-3.4.2/modules \
+	-D ENABLE_NEON=ON \
+	-D ENABLE_VFPV3=ON \
+	-D BUILD_TESTS=OFF \
+	-D INSTALL_PYTHON_EXAMPLES=OFF \
+	-DPYTHON_DEFAULT_EXECUTABLE=/usr/bin/python3 \
+	-D BUILD_EXAMPLES=OFF \
 	../opencv-3.4.2
 make
 sudo make install
