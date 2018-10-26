@@ -1,12 +1,19 @@
 # Ubuntu下的一些软件deb源及安装
 
-## oracle-jdk
+## oracle-jdk-8
 
 ```bash
-sudo add-apt-repository ppa:webupd8team/java #java8
-sudo add-apt-repository ppa:linuxuprising/java #java10
+sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
+```
+
+## oracle-jdk-11
+
+```bash
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt-get update
+sudo apt-get install oracle-java11-installer
 ```
 
 ## shadowsocks-qt5
