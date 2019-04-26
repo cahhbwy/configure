@@ -43,7 +43,6 @@ sudo nano /etc/shadowsocks/client.json
 ```json
 {
         "server":"ip_address",
-        "server_port":8388,
         "port_password":{
                 "8388":"********"
         },
