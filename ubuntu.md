@@ -1,9 +1,22 @@
-# Ubuntu configure
+# Ubuntu 18.04 configure
 
 ## basic software and config
 
 ```shell
 sudo apt install build-essential git python3-pip zsh curl
+```
+
+### pypi source
+
+```shell
+mkdir .config/pip
+nano .config/pip/pip.conf
+```
+
+```ini
+[global]
+index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
+format = columns
 ```
 
 ## chrome 
@@ -136,7 +149,7 @@ git config --global https.proxy socks5://127.0.0.1:1080
 
 ```shell
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 ```
 
 install [powerline font](https://github.com/powerline/fonts.git)
@@ -157,7 +170,7 @@ pyenv install 3.6.8
 
 ## [oracle-jdk](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-## [cuda](https://developer.nvidia.com/cuda-toolkit-archive) and [cudnn](https://developer.nvidia.com/rdp/cudnn-archive)
+## [cuda-10-0](https://developer.nvidia.com/cuda-toolkit-archive) and [cudnn-7.4.1](https://developer.nvidia.com/rdp/cudnn-archive)
 
 ```
 # Add NVIDIA package repositories
@@ -169,7 +182,7 @@ wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1
 sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
 sudo apt-get update
 
-# Install development and runtime libraries (~4GB)
+# Install development and runtime libraries
 sudo apt-get install cuda-10-0 libcudnn7=7.4.1.5-1+cuda10.0 libcudnn7-dev=7.4.1.5-1+cuda10.0
 
 # Install TensorRT. Requires that libcudnn7 is installed above.
@@ -177,6 +190,15 @@ sudo apt-get update
 sudo apt-get install nvinfer-runtime-trt-repo-ubuntu1804-5.0.2-ga-cuda10.0
 sudo apt-get update
 sudo apt-get install libnvinfer5=5.0.2-1+cuda10.0 libnvinfer-dev=5.0.2-1+cuda10.0
+```
+
+## [tensorflow-1.13.1](https://www.tensorflow.org/install)
+
+needs **cuda-10-0**, **cudnn-7.4.1**, **nvinfer-5.0**
+
+```shell
+pyenv local 3.6.8
+pip3 install tensorflow-gpu
 ```
 
 ## [pycharm](https://www.jetbrains.com/pycharm/download/)
