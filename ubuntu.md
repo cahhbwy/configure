@@ -19,6 +19,13 @@ index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
 format = columns
 ```
 
+### fstab
+
+```shell
+ll /dev/disk/by-uuid
+# UUID=XXXXXXXXXXXXX	/media/monk/d	ntfs-3g uid=1000,gid=1000,umask=0022	0	0
+```
+
 ## chrome 
 
 [download](https://www.google.com/chrome/)
