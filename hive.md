@@ -167,7 +167,7 @@ hdfs dfs -cat output/*                                    # 查看运行结果
 
 执行完第3行代码后，通过`jps`命令可查看到 NameNode、DataNode、SecondaryNameNode进程
 
-通过http://<ip address>:50070/可查看节点状态。
+通过`http://<ip address>:50070/`可查看节点状态。
 
 关闭dfs文件系统使用`stop-dfs.sh`
 
@@ -202,5 +202,5 @@ start-yarn.sh
 ```
 执行完代码后，通过`jps`命令可查看到 NameNode、DataNode、SecondaryNameNode、ResourceManager、NodeManager进程
 
-打开http://<ip address>:8088/查看yarn服务状态
+打开`http://<ip address>:8088/`查看yarn服务状态
 
