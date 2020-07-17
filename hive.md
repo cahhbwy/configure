@@ -4,7 +4,7 @@
 
 -- 为了简化使用，不另外新建专门的用户管理hadoop，直接使用本地登陆用户配置，该用户具有sudo权限，用户名使用username代替
 
-## 1. 安装 hadoop 2.x.x （以 hadoop 2.9.2 为例）
+## 1. 安装 hadoop 2.x.x （以 hadoop 2.10.0 为例）
 
 [download hadoop](https://downloads.apache.org/hadoop/common/)
 
@@ -23,10 +23,10 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 2. 下载解压hadoop，并放到合适的位置（以/opt为例）
 
 ```bash
-wget https://downloads.apache.org/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz
-sudo tar -xf hadoop-2.9.2.tar.gz -C /opt
+wget https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz
+sudo tar -xf hadoop-2.10.0.tar.gz -C /opt
 cd /opt
-sudo ln -s hadoop-2.9.2 hadoop
+sudo ln -s hadoop-2.10.0 hadoop
 ```
 
 3. 添加环境变量
@@ -64,7 +64,7 @@ bin/hadoop
 cd ~
 mkdir input
 cp /opt/hadoop/etc/hadoop/*.xml input
-hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar grep input output 'dfs[a-z.]+'
+hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar grep input output 'dfs[a-z.]+'
 cat output/*
 ```
 
@@ -92,7 +92,7 @@ cd dataset/hadoop/dfs
 mkdir tmp name data namesecondary
 ```
 
-* 对hadoop进行一些设置（更多配置选项参考[官方文档](https://hadoop.apache.org/docs/r2.9.2/hadoop-project-dist/)）
+* 对hadoop进行一些设置（更多配置选项参考[官方文档](https://hadoop.apache.org/docs/r2.10.0/hadoop-project-dist/)）
 
 编辑 /opt/hadoop/etc/hadoop/core-site.xml，将其中configuration标签对的内容修改为，
 ```xml
@@ -108,7 +108,7 @@ mkdir tmp name data namesecondary
 </configuration>
 ```
 
-解释说明：（参考[官方对配置文件的参数解释](https://hadoop.apache.org/docs/r2.9.2/hadoop-project-dist/hadoop-common/core-default.xml)）
+解释说明：（参考[官方对配置文件的参数解释](https://hadoop.apache.org/docs/r2.10.0/hadoop-project-dist/hadoop-common/core-default.xml)）
 
 > 配置`fs.defaultFS`（默认文件系统的名称）为`hdfs://localhost:9000`
 
@@ -117,26 +117,11 @@ mkdir tmp name data namesecondary
 编辑 /opt/hadoop/etc/hadoop/hdfs-site.xml，将其中configuration标签对的内容修改为
 ```xml
 <configuration>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-    <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>file:///home/username/dataset/hadoop/dfs/name</value>
-    </property>
-    <property>
-        <name>dfs.datanode.data.dir</name>
-        <value>file:///home/username/dataset/hadoop/dfs/data</value>
-    </property>
-    <property>
-        <name>dfs.namenode.checkpoint.dir</name>
-        <value>file:///home/username/dataset/hadoop/dfs/namesecondary</value>
-    </property>
+ 
 </configuration>
 ```
 
-解释说明：（参考[官方对配置文件对参数解释](https://hadoop.apache.org/docs/r2.9.2/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)）
+解释说明：（参考[官方对配置文件对参数解释](https://hadoop.apache.org/docs/r2.10.0/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)）
 
 > 配置`dfs.replication`（默认数据块的复制次数）为`1`
 > 
@@ -156,7 +141,7 @@ hdfs namenode -format                                     # 格式化数据节�
 start-dfs.sh                                              # 启动dfs文件系统
 hdfs dfs -mkdir -p /user/username                         # 在dfs文件系统中建立用户文件夹
 hdfs dfs -put /opt/hadoop/etc/hadoop /user/monk/input     # 复制文件夹到dfs文件系统中
-hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar grep input output 'dfs[a-z.]+'
+hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar grep input output 'dfs[a-z.]+'
                                                           # 使用hadoop运行程序
 hdfs dfs -cat output/*                                    # 查看运行结果
 ```
