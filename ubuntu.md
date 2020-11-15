@@ -178,6 +178,21 @@ sudo systemctl enable shadowsocks.service
 sudo systemctl start shadowsocks.service
 ```
 
+## provixy
+
+```shell
+sudo apt install proxy
+```
+
+modify "/etc/privoxy/config", set 
+```ini
+forward-socks5t /       127.0.0.1:1080  .
+```
+
+```shell
+sudo systemctl restart privoxy.service
+```
+
 ### chrome configure
 install [SwitchyOmega](https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN)
 
