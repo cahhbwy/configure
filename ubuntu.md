@@ -37,7 +37,7 @@ ll /dev/disk/by-uuid
 ```shell
 sudo pip3 install shadowsocks
 sudo mkdir /etc/shadowsocks
-sudo nano /etc/shadowsocks/client.json
+sudo nano /etc/shadowsocks/server.json
 ```
 
 ```json
@@ -181,7 +181,7 @@ sudo systemctl start shadowsocks.service
 ## provixy
 
 ```shell
-sudo apt install proxy
+sudo apt install provixy
 ```
 
 modify "/etc/privoxy/config", set 
@@ -213,6 +213,23 @@ git config --global http.proxy socks5://127.0.0.1:1080
 git config --global https.proxy socks5://127.0.0.1:1080
 ```
 
+### apt proxy
+
+```shell
+nano .apt-proxy.conf
+```
+
+``` config
+Acquire {
+  HTTP::proxy "http://127.0.0.1:8118";
+  HTTPS::proxy "http://127.0.0.1:8118";
+}
+```
+
+```shell
+sudo apt -c .apt-proxy.conf command
+```
+
 ## [oh-my-zsh](https://ohmyz.sh/)
 
 ```shell
@@ -232,42 +249,18 @@ cd fonts
 
 ```shell
 curl https://pyenv.run | zsh
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
-pyenv install 3.6.8
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
+cd ~/.pyenv/plugins/python-build/share/python-build
+sed -i "s#https://www.python.org/ftp/python/#https://npm.taobao.org/mirrors/python/#g" `grep 'https://www.python.org/ftp/python/' -rl .`
+cd ~
+pyenv install 3.7.9
 ```
 
 ## [oracle-jdk](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
-## [cuda-10-0](https://developer.nvidia.com/cuda-toolkit-archive) and [cudnn-7.4.1](https://developer.nvidia.com/rdp/cudnn-archive)
+## [cuda](https://developer.nvidia.com/cuda-toolkit-archive)
 
-```
-# Add NVIDIA package repositories
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-sudo apt-get update
-wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-sudo apt install ./nvidia-machine-learning-repo-ubuntu1804_1.0.0-1_amd64.deb
-sudo apt-get update
-
-# Install development and runtime libraries
-sudo apt-get install cuda-10-0 libcudnn7=7.4.1.5-1+cuda10.0 libcudnn7-dev=7.4.1.5-1+cuda10.0
-
-# Install TensorRT. Requires that libcudnn7 is installed above.
-sudo apt-get update
-sudo apt-get install nvinfer-runtime-trt-repo-ubuntu1804-5.0.2-ga-cuda10.0
-sudo apt-get update
-sudo apt-get install libnvinfer5=5.0.2-1+cuda10.0 libnvinfer-dev=5.0.2-1+cuda10.0
-```
-
-## [tensorflow-1.13.1](https://www.tensorflow.org/install)
-
-needs **cuda-10-0**, **cudnn-7.4.1**, **nvinfer-5.0**
-
-```shell
-pyenv local 3.6.8
-pip3 install tensorflow-gpu
-```
+## [tensorflow](https://www.tensorflow.org/install)
 
 ## [pycharm](https://www.jetbrains.com/pycharm/download/)
 
@@ -277,15 +270,7 @@ pip3 install tensorflow-gpu
 
 ## [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 
-## sublime
-
-```bash
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt-get install apt-transport-https
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt-get update
-sudo apt-get install sublime-text
-```
+## [Visual Studio Code](https://code.visualstudio.com/download)
 
 ## [hadoop](http://hadoop.apache.org/releases.html)
 
