@@ -76,6 +76,30 @@ sudo systemctl enable shadowsocks.service
 sudo systemctl start shadowsocks.service
 ```
 
+## kcptun server
+
+```shell
+sudo nano /etc/systemd/system/kcptun.service
+```
+
+```ini
+Description=Kcptun Server Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/server_linux_amd64 -l ":39900" -t ":8380" --key=*** --crypt=none --mode=fast3 --mtu=1350 --sndwnd=1024 --rcvwnd=1024 --datashard=10 --parityshard=3 --dscp=0 --nocomp --quiet
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```shell
+sudo systemctl enable kcptun.service
+sudo systemctl start kcptun.service
+```
+
 ## kcptun client
 
 [download](https://github.com/xtaci/kcptun/releases)
