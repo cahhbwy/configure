@@ -152,7 +152,7 @@ sudo systemctl start kcptun.service
 ### install shadowsocks
 
 ```shell
-sudo pip3 install shadowsocks
+sudo pip3 install git+https://github.com/shadowsocks/shadowsocks.git@master
 sudo mkdir /etc/shadowsocks
 sudo nano /etc/shadowsocks/client.json
 ```
