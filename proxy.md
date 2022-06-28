@@ -153,6 +153,28 @@ sudo systemctl start kcptun.service
 sudo systemctl status kcptun.service
 ```
 
+4. 【可选】终端代理，安装proxychains4，并配置/etd/proxychains4.conf文件
+
+```shell
+sudo apt install proxychains4
+```
+```conf
+sock5   127.0.0.1   1080
+```
+
+5. 【可选】git proxy
+
+```shell
+git config --global http.proxy socks5://127.0.0.1:1080
+git config --global https.proxy socks5://127.0.0.1:1080
+```
+
+6. 【可选】apt proxy
+
+```shell
+sudo apt-get -o Acquire::http::proxy="http://127.0.0.1:8000/" command
+```
+
 ### MacOS
 
 1. 从[此处](https://github.com/shadowsocks/ShadowsocksX-NG/releases)下载客户端
@@ -171,3 +193,8 @@ mode=fast3;dscp=0;crypt=none;parityshard=3;rcvwnd=512;quiet;key=monk_kcptun;sndw
 ### Windows
 
 1. 从[此处](https://github.com/shadowsocks/shadowsocks-windows/releases)下载客户端
+
+
+### Bug Fix
+
+* 如果遇到shadowsocks启动不了的情况，则可能是openssl的问题。尝试替换文件`/usr/local/lib/python3.x/dist-packages/shadowsocks/crypto/openssl.py`中的`EVP_CIPHER_CTX_cleanup`为`EVP_CIPHER_CTX_reset`
