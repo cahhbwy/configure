@@ -59,6 +59,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 * [PhpStorm](https://www.jetbrains.com/phpstorm/download/)
 * [Clion](https://www.jetbrains.com/clion/download/)
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
+* [JETBRA](https://3.jetbra.in/) JetBrains系列激活工具
 * [oracle-jdk](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [cuda](https://developer.nvidia.com/cuda-toolkit-archive)
 * [hadoop](http://hadoop.apache.org/releases.html)
