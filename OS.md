@@ -56,3 +56,8 @@ bindkey -s "^[OQ" "/"
 # SwitchOmega
 
 规则列表 https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
+
+# mac
+```shell
+sudo mount -t ntfs -o nobrowse,rw /dev/disk2s1 /Users/admin/Disk
+```
