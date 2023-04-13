@@ -131,6 +131,30 @@ sudo systemctl status shadowsocks.service
 3. 下载对应架构的[kcptun](https://github.com/xtaci/kcptun/releases)，并将client挪到/usr/local/bin下。注册kcptun服务。
 
 ```shell
+sudo mkdir /etc/kcptun
+sudo nano /etc/kcptun/server.json
+```
+
+```json
+{
+    "listen": "0.0.0.0:29000",
+    "target": ":9000",
+    "key": "******",
+    "crypt": "none",
+    "mode": "fast3",
+    "mtu": 1350,
+    "sndwnd": 1024,
+    "rcvwnd": 1024,
+    "datashard": 10,
+    "parityshard": 3,
+    "dscp": 0,
+    "nocomp": true,
+    "quiet": true,
+    "tcp": false
+}
+```
+
+```shell
 sudo nano /etc/systemd/system/kcptun.service
 ```
 
@@ -141,7 +165,7 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/local/bin/client_linux_amd64 -l ":39900" -t ":8380" --key=*** --crypt=none --mode=fast3 --mtu=1350 --sndwnd=512 --rcvwnd=512 --datashard=10 --parityshard=3 --dscp=0 --nocomp --quiet
+ExecStart=/usr/local/bin/client_linux_amd64 -c /etc/kcptun/server.json
 
 [Install]
 WantedBy=multi-user.target
