@@ -218,6 +218,16 @@ mode=fast3;dscp=0;crypt=none;parityshard=3;rcvwnd=512;quiet;key=monk_kcptun;sndw
 
 1. 从[此处](https://github.com/shadowsocks/shadowsocks-windows/releases)下载客户端
 
+2. 配置服务器地址为远程ip，服务器端口为kcptun端口，密码为shadowsocks密码。配置好加密方式。
+
+3. 下载kcptun的client到本地，并且放在shadowsocks文件夹下，改名为kcptun.exe
+
+4. 勾选“需要命令行参数”，配置插件参数为
+```raw
+--localaddr %SS_LOCAL_HOST%:%SS_LOCAL_PORT% --remoteaddr %SS_REMOTE_HOST%:%SS_REMOTE_PORT% --key ****** --mode fast3 --crypt none --mtu 1350 --sndwnd 1024 --rcvwnd 1024 --parityshard 3 --dscp 0 --nocomp --quiet
+```
+
+5. 应用后检查进程管理器里面是否有kcptun.exe。
 
 ### Bug Fix
 
