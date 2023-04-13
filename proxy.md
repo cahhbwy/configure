@@ -209,7 +209,7 @@ sudo apt-get -o Acquire::http::proxy="http://127.0.0.1:8000/" command
 
 其中插件选项为：
 ```raw
-mode=fast3;dscp=0;crypt=none;parityshard=3;rcvwnd=512;quiet;key=monk_kcptun;sndwnd=512;mtu=1350;datashard=10;nocomp
+mode=fast3;dscp=0;crypt=none;parityshard=3;rcvwnd=512;quiet;key=******;sndwnd=512;mtu=1350;datashard=10;nocomp
 ```
 
 3. 【可选】使用相同版本的kcptun，将下载下来的`client_darwin_amd64`移动到`/Users/monk/Library/Application Support/ShadowsocksX-NG/kcptun_v20190905_1`下，并重命名为`client`.
