@@ -132,13 +132,13 @@ sudo systemctl status shadowsocks.service
 
 ```shell
 sudo mkdir /etc/kcptun
-sudo nano /etc/kcptun/server.json
+sudo nano /etc/kcptun/client.json
 ```
 
 ```json
 {
-    "listen": "0.0.0.0:29000",
-    "target": ":9000",
+    "remoteaddr": "0.0.0.0:29000",
+    "localaddr": ":9000",
     "key": "******",
     "crypt": "none",
     "mode": "fast3",
