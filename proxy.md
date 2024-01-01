@@ -165,7 +165,7 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/local/bin/client_linux_amd64 -c /etc/kcptun/server.json
+ExecStart=/usr/local/bin/client_linux_amd64 -c /etc/kcptun/client.json
 
 [Install]
 WantedBy=multi-user.target
